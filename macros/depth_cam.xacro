@@ -3,6 +3,7 @@
   
   <xacro:macro name="DepthCam" params="name 
                link 
+               optical_frame
                horizontal_fov 
                img_width 
                img_height 
@@ -18,8 +19,8 @@
                pointcloud_cuttoff">
 
   <gazebo reference="${link}">
-    <sensor type="DepthCam" name="${name}">
-        <always_on>true</always_on>
+    <sensor type="depth" name="${name}">
+        <always_on>1</always_on>
         <visualize>true</visualize>             
         <camera>
             <horizontal_fov>${horizontal_fov}</horizontal_fov>  
@@ -40,7 +41,7 @@
              <alwaysOn>true</alwaysOn>
                 <updateRate>${update_rate}</updateRate>
                 <cameraName>${name}</cameraName>
-                <frameName>camera_depth_optical_frame</frameName>                   
+                <frameName>${optical_frame}</frameName>                   
             <imageTopicName>${image_topic}</imageTopicName>
             <depthImageTopicName>${depth_topic}</depthImageTopicName>
             <pointCloudTopicName>${cloud_topic}</pointCloudTopicName>
